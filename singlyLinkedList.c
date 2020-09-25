@@ -13,7 +13,7 @@ void deleteNodeMid(int, int);
 
 int num_of_nodes;
 
-// structure to create node for linked list
+// creating a structure for nodes of linked list
 struct node{
 	int data;
 	struct node *addr_next;
