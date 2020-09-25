@@ -191,6 +191,7 @@ void deleteNodeEnd(int len){
 	}
 	sec_ptr->addr_next = NULL;
 	free(pri_ptr);
+	end = sec_ptr;
 }
 
 // function to delete node from a certain position
