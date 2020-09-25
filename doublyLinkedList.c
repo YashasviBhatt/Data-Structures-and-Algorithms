@@ -13,7 +13,7 @@ void deleteNodeMid(int, int);
 
 int num_of_nodes;
 
-// structure to create node for linked list
+// creatin structure nodes of linked list
 struct node{
 	struct node *addr_prev;
 	int data;
@@ -94,7 +94,7 @@ void createLinkedList(int num){
 	struct node *pri_ptr, *sec_ptr;
 	
 	// creating starting node
-	start = (struct node *)malloc(sizeof(struct node));		// allocating memory
+	start = (struct node *)malloc(sizeof(struct node));		// memory allocation
 	printf("Enter Node Value : ");
 	scanf("%d", &data);
 	// inserting value
