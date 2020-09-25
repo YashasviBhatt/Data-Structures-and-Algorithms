@@ -93,7 +93,7 @@ void createLinkedList(int num){
 	struct node *pri_ptr, *sec_ptr;
 	
 	// creating starting node
-	start = (struct node *)malloc(sizeof(struct node));		// allocating memory
+	start = (struct node *)malloc(sizeof(struct node));		// memory allocation
 	printf("Enter Node Value : ");
 	scanf("%d", &data);
 	// inserting value
