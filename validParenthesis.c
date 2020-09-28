@@ -4,7 +4,7 @@
 #define max 50
 
 int top = -1;
-int stack[max];
+char stack[max];
 
 void push(char);
 char pop(char);
