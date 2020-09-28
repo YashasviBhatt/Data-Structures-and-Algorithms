@@ -41,6 +41,8 @@ void main(){
 			default : printf("\nWrong Choice, Please Try Again");
 		}
 	}
+	
+	getch();
 }
 
 // function to push value in stack
