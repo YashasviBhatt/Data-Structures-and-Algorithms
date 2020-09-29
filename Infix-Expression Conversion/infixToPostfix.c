@@ -57,6 +57,7 @@ void precedenceChecker(char opr){
 	else
 		if(stack[top] == '/' || stack[top] == '*' || stack[top] == '%'){
 			pop(top);
+			stack[++top] = '(';
 			stack[++top] = opr;
 		}
 		else if(stack[top] == '(')
