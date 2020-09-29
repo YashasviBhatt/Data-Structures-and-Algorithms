@@ -5,6 +5,7 @@
 
 char stack[max];
 int top = -1;
+char final_string[max];
 
 void precedenceChecker(char);
 void push(char);
@@ -16,7 +17,7 @@ void main(){
 	int index;
 	
 	printf("Enter Infix String : ");
-	gets(strng);
+	gets(strng);					// input in character array
 	
 	printf("Postfix String : ");
 	
@@ -27,12 +28,14 @@ void main(){
 		if(strng[index] == '(')
 			push(strng[index]);
 		else if((strng[index] >= 'a' && strng[index] <= 'z') || (strng[index] >= 'A' && strng[index] <= 'Z'))
-			printf("%c", strng[index]);
+			final_string[strlen(final_string)] = strng[index];
 		else if((strng[index] == ')'))
 			pop(index);
 		else
 			precedenceChecker(strng[index]);		
 	}
+	
+	puts(final_string);				// printing character as string
 	
 	getch();
 }
@@ -47,15 +50,21 @@ void precedenceChecker(char opr){
 	if(opr == '/' || opr == '*' || opr == '%')
 		if(stack[top] == '+' || stack[top] == '-' || stack[top] == '(')
 			push(opr);
-		else
-			printf("%c", opr);
+		else{
+			final_string[strlen(final_string)] = stack[top--];
+			stack[++top] = opr;
+		}
 	else
-		if(stack[top] == '/' || stack[top] == '*' || stack[top] == '%')
-			printf("%c", stack[top--]);
+		if(stack[top] == '/' || stack[top] == '*' || stack[top] == '%'){
+			pop(top);
+			stack[++top] = opr;
+		}
 		else if(stack[top] == '(')
 			push(opr);
-		else
-			printf("%c", opr);
+		else{
+			final_string[strlen(final_string)] = stack[top--];
+			stack[++top] = opr;
+		}
 			
 }
 
@@ -68,6 +77,6 @@ void pop(int curr_index){
 			break;
 		}
 		else
-			printf("%c", stack[top--]);
+			final_string[strlen(final_string)] = stack[top--];
 	}
 }
