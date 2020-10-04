@@ -1,17 +1,18 @@
 #include<stdio.h>
 #include<conio.h>
 #include<string.h>
-#define max 50
+
+#define MAX 50
 
 int top = -1;
-char stack[max];
+char stack[MAX];
 
 void push(char);
 char pop(char);
 
 // driver function
 void main(){
-	char strng[max];
+	char strng[MAX];
 	int index, flag;
 	printf("Enter a String : ");
 	gets(strng);

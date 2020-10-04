@@ -85,8 +85,6 @@ void main(){
 			default : printf("\nWrong Choice, Please Try Again");
 		}
 	}
-	
-	getch();
 }
 
 // function for node creation
@@ -117,16 +115,13 @@ void createLinkedList(int num){
 		sec_ptr = sec_ptr->addr_next;
 	}
 	end = pri_ptr;
-	end->addr_next = start;
 }
 
 // function to display Linked List
 void displayLinkedList(){
 	struct node *pri_ptr;
 	pri_ptr = start;
-	printf("%d ", pri_ptr->data);
-	pri_ptr = pri_ptr->addr_next;
-	while(pri_ptr != end->addr_next){
+	while(pri_ptr != NULL){
 		printf("%d ", pri_ptr->data);
 		pri_ptr = pri_ptr->addr_next;
 	}
@@ -140,7 +135,6 @@ void insertNodeStart(int val){
 	ptr->data = val;
 	ptr->addr_next = start;
 	start = ptr;
-	end->addr_next = start;
 	num_of_nodes += 1;
 }
 
@@ -184,7 +178,6 @@ void deleteNodeStart(){
 	start=start->addr_next ;
 	ptr->addr_next = NULL;
 	free(ptr);
-	end->addr_next = start;
 }
 
 // function to delete node from end
@@ -192,14 +185,13 @@ void deleteNodeEnd(int len){
 	struct node *pri_ptr,*sec_ptr;
 	pri_ptr = start;
 	sec_ptr = start;
-	while(pri_ptr->addr_next != start){
+	while(pri_ptr->addr_next != NULL){
 		sec_ptr = pri_ptr;
 		pri_ptr = pri_ptr->addr_next;
 	}
 	sec_ptr->addr_next = NULL;
 	free(pri_ptr);
 	end = sec_ptr;
-	end->addr_next = start;
 }
 
 // function to delete node from a certain position

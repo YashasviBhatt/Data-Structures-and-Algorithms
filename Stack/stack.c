@@ -1,13 +1,14 @@
 #include<stdio.h>
 #include<conio.h>
-#define max 10
+
+#define MAX 10
 
 void push(int);
 void pop();
 void peek();
 void diplay();
 
-int stack[max];
+int stack[MAX];
 int top = -1;
 
 typedef enum{
@@ -41,13 +42,11 @@ void main(){
 			default : printf("\nWrong Choice, Please Try Again");
 		}
 	}
-	
-	getch();
 }
 
 // function to push value in stack
 void push(int item){
-	if (top == (max - 1))
+	if (top == (MAX - 1))
 		printf("Stack Overflow");
 	else
 		stack[++top] = item;

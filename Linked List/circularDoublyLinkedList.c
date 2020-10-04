@@ -13,7 +13,7 @@ void deleteNodeMid(int, int);
 
 int num_of_nodes;
 
-// creatin structure nodes of linked list
+// structure to create node for linked list
 struct node{
 	struct node *addr_prev;
 	int data;
@@ -86,8 +86,6 @@ void main(){
 			default : printf("\nWrong Choice, Please Try Again");
 		}
 	}
-	
-	getch();
 }
 
 // function for node creation
@@ -96,7 +94,7 @@ void createLinkedList(int num){
 	struct node *pri_ptr, *sec_ptr;
 	
 	// creating starting node
-	start = (struct node *)malloc(sizeof(struct node));		// memory allocation
+	start = (struct node *)malloc(sizeof(struct node));		// allocating memory
 	printf("Enter Node Value : ");
 	scanf("%d", &data);
 	// inserting value
@@ -120,13 +118,16 @@ void createLinkedList(int num){
 		sec_ptr = sec_ptr->addr_next;
 	}
 	end = pri_ptr;
+	end->addr_next = start;
 }
 
 // function to display Linked List
 void displayLinkedList(){
 	struct node *pri_ptr;
 	pri_ptr = start;
-	while(pri_ptr != NULL){
+	printf("%d ", pri_ptr->data);
+	pri_ptr = pri_ptr->addr_next;
+	while(pri_ptr != end->addr_next){
 		printf("%d ", pri_ptr->data);
 		pri_ptr = pri_ptr->addr_next;
 	}
@@ -139,9 +140,10 @@ void insertNodeStart(int val){
 	ptr = (struct node *)malloc(sizeof(struct node));			// memory allocation
 	ptr->data = val;
 	ptr->addr_next = start;
-	ptr->addr_prev = NULL;
+	ptr->addr_prev = end;
 	start->addr_prev = ptr;
 	start = ptr;
+	end->addr_next = start;
 	num_of_nodes += 1;
 }
 
@@ -154,6 +156,8 @@ void insertNodeEnd(int val){
 	ptr->addr_next = NULL;
 	ptr->addr_prev = end;
 	end = ptr;
+	end->addr_next = start;
+	start->addr_prev = end;
 	num_of_nodes += 1;
 }
 
@@ -186,8 +190,9 @@ void deleteNodeStart(){
 	struct node *ptr;
 	ptr = start;
 	start=start->addr_next;
-	start->addr_prev = NULL;
+	start->addr_prev = end;
 	ptr->addr_next = NULL;
+	end->addr_next = start;
 	free(ptr);
 }
 
@@ -196,13 +201,14 @@ void deleteNodeEnd(int len){
 	struct node *pri_ptr,*sec_ptr;
 	pri_ptr = start;
 	sec_ptr = start;
-	while(pri_ptr->addr_next != NULL){
+	while(pri_ptr->addr_next != start){
 		sec_ptr = pri_ptr;
 		pri_ptr = pri_ptr->addr_next;
 	}
-	sec_ptr->addr_next = NULL;
+	sec_ptr->addr_next = start;
 	pri_ptr->addr_prev = NULL;
 	free(pri_ptr);
+	start->addr_prev = sec_ptr;
 	end = sec_ptr;
 }
 

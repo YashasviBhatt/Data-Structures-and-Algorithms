@@ -1,8 +1,9 @@
 #include<stdio.h>
 #include<conio.h>
-#define max 50
 
-int queue[max];
+#define MAX 50
+
+int queue[MAX];
 int front = -1, rear = -1;
 
 void enqueue(int);
@@ -48,7 +49,7 @@ void main(){
 
 // function to perform enqueue(inserting an item) operation on queue
 void enqueue(item){
-	if(rear == max - 1){
+	if(rear == MAX - 1){
 		printf("Queue Overflow");
 		return;
 	}

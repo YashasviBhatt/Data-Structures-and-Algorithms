@@ -15,7 +15,6 @@ int num_of_nodes;
 
 // structure to create node for linked list
 struct node{
-	struct node *addr_prev;
 	int data;
 	struct node *addr_next;
 }*start, *end;
@@ -86,8 +85,6 @@ void main(){
 			default : printf("\nWrong Choice, Please Try Again");
 		}
 	}
-	
-	getch();
 }
 
 // function for node creation
@@ -102,7 +99,6 @@ void createLinkedList(int num){
 	// inserting value
 	start->data = data;
 	start->addr_next = NULL;
-	start->addr_prev = NULL;
 	
 	sec_ptr = start;
 	
@@ -114,7 +110,6 @@ void createLinkedList(int num){
 		// inserting values
 		pri_ptr->data = data;
 		pri_ptr->addr_next = NULL;
-		pri_ptr->addr_prev = sec_ptr;
 		// connecting nodes
 		sec_ptr->addr_next = pri_ptr;
 		sec_ptr = sec_ptr->addr_next;
@@ -142,8 +137,6 @@ void insertNodeStart(int val){
 	ptr = (struct node *)malloc(sizeof(struct node));			// memory allocation
 	ptr->data = val;
 	ptr->addr_next = start;
-	ptr->addr_prev = end;
-	start->addr_prev = ptr;
 	start = ptr;
 	end->addr_next = start;
 	num_of_nodes += 1;
@@ -156,10 +149,7 @@ void insertNodeEnd(int val){
 	end->addr_next = ptr;
 	ptr->data = val;
 	ptr->addr_next = NULL;
-	ptr->addr_prev = end;
 	end = ptr;
-	end->addr_next = start;
-	start->addr_prev = end;
 	num_of_nodes += 1;
 }
 
@@ -173,10 +163,8 @@ void insertNodeMid(int val, int pos, int len){
 			struct node *ptr;
 			ptr = (struct node *)malloc(sizeof(struct node));			// memory allocation
 			ptr->data = val;
-			ptr->addr_prev = sec_ptr;
 			sec_ptr->addr_next = ptr;
 			ptr->addr_next = pri_ptr;
-			pri_ptr->addr_prev = ptr;
 			break;
 		}
 		else{
@@ -191,11 +179,10 @@ void insertNodeMid(int val, int pos, int len){
 void deleteNodeStart(){
 	struct node *ptr;
 	ptr = start;
-	start=start->addr_next;
-	start->addr_prev = end;
+	start=start->addr_next ;
 	ptr->addr_next = NULL;
-	end->addr_next = start;
 	free(ptr);
+	end->addr_next = start;
 }
 
 // function to delete node from end
@@ -207,25 +194,21 @@ void deleteNodeEnd(int len){
 		sec_ptr = pri_ptr;
 		pri_ptr = pri_ptr->addr_next;
 	}
-	sec_ptr->addr_next = start;
-	pri_ptr->addr_prev = NULL;
+	sec_ptr->addr_next = NULL;
 	free(pri_ptr);
-	start->addr_prev = sec_ptr;
 	end = sec_ptr;
+	end->addr_next = start;
 }
 
 // function to delete node from a certain position
 void deleteNodeMid(int pos, int len){
 	int node_index;
-	struct node *pri_ptr, *sec_ptr, *ptr;
+	struct node *pri_ptr, *sec_ptr;
 	pri_ptr = start;
 	for(node_index = 0; node_index < len; node_index++){
 		if((node_index == (pos - 1)) && ((node_index > 0) && (node_index < len - 1))){
 			sec_ptr->addr_next = pri_ptr->addr_next;
-			ptr = pri_ptr->addr_next;
-			ptr->addr_prev = sec_ptr;
 			pri_ptr->addr_next = NULL;
-			pri_ptr->addr_prev = NULL;
 			break;
 		}
 		else{

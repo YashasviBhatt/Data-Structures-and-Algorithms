@@ -1,8 +1,9 @@
 #include<stdio.h>
 #include<conio.h>
-#define max 50
 
-int queue[max];
+#define MAX 50
+
+int queue[MAX];
 int front = -1, rear = -1;
 
 void enqueue(int);
@@ -20,7 +21,7 @@ void main(){
 	boolean exit_flag = f;
 	
 	while (exit_flag == f){
-		printf("\n\nEnter\n");
+		printf("\nEnter\n");
 		printf("1. To Enqueue\n");
 		printf("2. To Dequeue\n");
 		printf("3. To Display\n");
@@ -31,7 +32,7 @@ void main(){
 		switch(choice){
 			case 0 : exit_flag = t; break;
 			case 1 : {
-				printf("Enter Item to Insert : ");
+				printf("\nEnter Item to Insert : ");
 				scanf("%d", &item);
 				enqueue(item);
 			} break;
@@ -48,13 +49,13 @@ void main(){
 
 // function to perform enqueue(inserting an item) operation on queue
 void enqueue(item){
-	if(front == 0 && rear == max - 1){
+	if(front == 0 && rear == MAX - 1){
 		printf("Queue Overflow");
 		return;
 	}
 	else if(front == -1 && rear == -1)
 		front = rear = 0;
-	else if(rear == max - 1 && front != 0)
+	else if(rear == MAX - 1 && front != 0)
 		rear = 0;
 	else
 		rear += 1;
@@ -64,14 +65,14 @@ void enqueue(item){
 // function to perform dequeue(removing an item) operation on queue
 void dequeue(){
 	if(front == -1){
-		printf("Queue Underflow");
+		printf("\nQueue Underflow\n");
 		return;
 	}
-	printf("Dequeued Item : %d", queue[front]);
+	printf("\nDequeued Item : %d\n", queue[front]);
 	if (front == rear)
 		front = rear = -1;
 	else
-		if(front == max - 1)
+		if(front == MAX - 1)
 			front = 0;
 		else
 			front += 1;
@@ -79,10 +80,18 @@ void dequeue(){
 
 // function to print queue
 void display(){
-	int index;
+	int index = front;
+	printf("\n");
 	if((front == -1 && rear == -1) || (front > rear))
-		printf("Queue Underflow");
-	else
-		for(index = front; index <= rear; index++)
+		printf("\nQueue Underflow\n");
+	else{
+		while(index != rear){
 			printf("%d ", queue[index]);
+			if(index == MAX - 1)
+				index = 0;
+			else
+				index++;
+		}
+		printf("%d\n", queue[rear]);
+	}
 }

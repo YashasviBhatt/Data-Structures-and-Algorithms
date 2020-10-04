@@ -1,20 +1,21 @@
 #include<stdio.h>
 #include<conio.h>
 #include<string.h>
-#define max 50
 
-char stack[max];
+#define MAX 50
+
+char stack[MAX];
 int top = -1;
-char final_string[max];
+char final_string[MAX];
 
 void precedenceChecker(char);
 void push(char);
 void pop(int);
-void reverseString(char strng[max]);
+void reverseString(char strng[MAX]);
 
 // driver function
 void main(){
-	char strng[max];
+	char strng[MAX];
 	int index;
 	
 	printf("Enter Infix String : ");
@@ -45,8 +46,8 @@ void main(){
 }
 
 // function to reverse string
-void reverseString(char strng[max]){
-	char strng1[max];
+void reverseString(char strng[MAX]){
+	char strng1[MAX];
 	int index = 0;
 	for(index = strlen(strng) - 1; index >= 0; index--){
 		if(strng[index] == '(')

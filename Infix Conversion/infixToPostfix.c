@@ -1,11 +1,12 @@
 #include<stdio.h>
 #include<conio.h>
 #include<string.h>
-#define max 50
 
-char stack[max];
+#define MAX 50
+
+char stack[MAX];
 int top = -1;
-char final_string[max];
+char final_string[MAX];
 
 void precedenceChecker(char);
 void push(char);
@@ -13,7 +14,7 @@ void pop(int);
 
 // driver function
 void main(){
-	char strng[max];
+	char strng[MAX];
 	int index;
 	
 	printf("Enter Infix String : ");
@@ -57,7 +58,6 @@ void precedenceChecker(char opr){
 	else
 		if(stack[top] == '/' || stack[top] == '*' || stack[top] == '%'){
 			pop(top);
-			stack[++top] = '(';
 			stack[++top] = opr;
 		}
 		else if(stack[top] == '(')
