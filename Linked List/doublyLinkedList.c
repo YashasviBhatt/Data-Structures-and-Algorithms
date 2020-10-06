@@ -92,6 +92,11 @@ void main(){
 void createLinkedList(int num){
 	int data, node_index;
 	struct node *pri_ptr, *sec_ptr;
+
+	if(num == 0){
+		printf("Empty Linked List Can't be Created");
+		exit(0);
+	}
 	
 	// creating starting node
 	start = (struct node *)malloc(sizeof(struct node));		// allocating memory
@@ -123,6 +128,10 @@ void createLinkedList(int num){
 // function to display Linked List
 void displayLinkedList(){
 	struct node *pri_ptr;
+	if(num_of_nodes == 0){
+		printf("Linked List Underflow");
+		return;
+	}
 	pri_ptr = start;
 	while(pri_ptr != NULL){
 		printf("%d ", pri_ptr->data);
@@ -133,6 +142,14 @@ void displayLinkedList(){
 
 //function to insert node at start
 void insertNodeStart(int val){
+	if(num_of_nodes == 0){
+		start = (struct node *)malloc(sizeof(struct node));
+		start->data = val;
+		start->addr_next = NULL;
+		start->addr_prev = NULL;
+		num_of_nodes++;
+		return;
+	}
 	struct node *ptr;
 	ptr = (struct node *)malloc(sizeof(struct node));			// memory allocation
 	ptr->data = val;
@@ -145,6 +162,14 @@ void insertNodeStart(int val){
 
 //function to insert node at end
 void insertNodeEnd(int val){
+	if(num_of_nodes == 0){
+		start = (struct node *)malloc(sizeof(struct node));
+		start->data = val;
+		start->addr_next = NULL;
+		start->addr_prev = NULL;
+		num_of_nodes++;
+		return;
+	}
 	struct node *ptr;
 	ptr = (struct node *)malloc(sizeof(struct node));			// memory allocation
 	end->addr_next = ptr;
@@ -157,6 +182,18 @@ void insertNodeEnd(int val){
 
 // function to insert node at a certain location
 void insertNodeMid(int val, int pos, int len){
+	if(pos > num_of_nodes){
+		printf("Position Not Exists");
+		return;
+	}
+	if(num_of_nodes == 0){
+		start = (struct node *)malloc(sizeof(struct node));
+		start->data = val;
+		start->addr_next = NULL;
+		start->addr_prev = NULL;
+		num_of_nodes++;
+		return;
+	}
 	int node_index;
 	struct node *pri_ptr, *sec_ptr;
 	pri_ptr = start;
@@ -182,15 +219,34 @@ void insertNodeMid(int val, int pos, int len){
 // function to delete node from start
 void deleteNodeStart(){
 	struct node *ptr;
+	if(num_of_nodes == 1){
+		num_of_nodes--;
+		free(start);
+		return;
+	}
+	else if(num_of_nodes == 0){
+		printf("Linked List Underflow");
+		return;
+	}
 	ptr = start;
 	start=start->addr_next;
 	start->addr_prev = NULL;
 	ptr->addr_next = NULL;
 	free(ptr);
+	num_of_nodes--;
 }
 
 // function to delete node from end
 void deleteNodeEnd(int len){
+	if(num_of_nodes == 1){
+		num_of_nodes--;
+		free(start);
+		return;
+	}
+	else if(num_of_nodes == 0){
+		printf("Linked List Underflow");
+		return;
+	}
 	struct node *pri_ptr,*sec_ptr;
 	pri_ptr = start;
 	sec_ptr = start;
@@ -202,11 +258,25 @@ void deleteNodeEnd(int len){
 	pri_ptr->addr_prev = NULL;
 	free(pri_ptr);
 	end = sec_ptr;
+	num_of_nodes--;
 }
 
 // function to delete node from a certain position
 void deleteNodeMid(int pos, int len){
 	int node_index;
+	if(pos > num_of_nodes){
+		printf("Position Not Exists");
+		return;
+	}
+	if(num_of_nodes == 1){
+		num_of_nodes--;
+		free(start);
+		return;
+	}
+	else if(num_of_nodes == 0){
+		printf("Linked List Underflow");
+		return;
+	}
 	struct node *pri_ptr, *sec_ptr, *ptr;
 	pri_ptr = start;
 	for(node_index = 0; node_index < len; node_index++){
@@ -223,4 +293,5 @@ void deleteNodeMid(int pos, int len){
 			pri_ptr = pri_ptr->addr_next;
 		}
 	}
+	num_of_nodes--;
 }

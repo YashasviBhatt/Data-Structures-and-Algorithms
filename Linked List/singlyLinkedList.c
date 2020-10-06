@@ -91,6 +91,11 @@ void main(){
 void createLinkedList(int num){
 	int data, node_index;
 	struct node *pri_ptr, *sec_ptr;
+
+	if(num <= 0){
+		printf("Empty Linked List can't be Created");
+		exit(0);
+	}
 	
 	// creating starting node
 	start = (struct node *)malloc(sizeof(struct node));		// allocating memory
@@ -120,6 +125,10 @@ void createLinkedList(int num){
 // function to display Linked List
 void displayLinkedList(){
 	struct node *pri_ptr;
+	if(num_of_nodes == 0){
+		printf("Linked List Underflow");
+		return;
+	}
 	pri_ptr = start;
 	while(pri_ptr != NULL){
 		printf("%d ", pri_ptr->data);
@@ -151,6 +160,10 @@ void insertNodeEnd(int val){
 
 // function to insert node at a certain location
 void insertNodeMid(int val, int pos, int len){
+	if(pos > num_of_nodes){
+		printf("Position Not Exists");
+		return;
+	}
 	int node_index;
 	struct node *pri_ptr, *sec_ptr;
 	pri_ptr = start;
@@ -174,15 +187,24 @@ void insertNodeMid(int val, int pos, int len){
 // function to delete node from start
 void deleteNodeStart(){
 	struct node *ptr;
+	if(num_of_nodes == 0){
+		printf("Linked List Underflow");
+		return;
+	}
 	ptr = start;
-	start=start->addr_next ;
+	start = start->addr_next;
 	ptr->addr_next = NULL;
 	free(ptr);
+	num_of_nodes--;
 }
 
 // function to delete node from end
 void deleteNodeEnd(int len){
 	struct node *pri_ptr,*sec_ptr;
+	if(num_of_nodes == 0){
+		printf("Linked List Underflow");
+		return;
+	}
 	pri_ptr = start;
 	sec_ptr = start;
 	while(pri_ptr->addr_next != NULL){
@@ -192,12 +214,17 @@ void deleteNodeEnd(int len){
 	sec_ptr->addr_next = NULL;
 	free(pri_ptr);
 	end = sec_ptr;
+	num_of_nodes--;
 }
 
 // function to delete node from a certain position
 void deleteNodeMid(int pos, int len){
 	int node_index;
 	struct node *pri_ptr, *sec_ptr;
+	if(num_of_nodes == 0){
+		printf("Linked List Underflow");
+		return;
+	}
 	pri_ptr = start;
 	for(node_index = 0; node_index < len; node_index++){
 		if((node_index == (pos - 1)) && ((node_index > 0) && (node_index < len - 1))){
@@ -210,4 +237,5 @@ void deleteNodeMid(int pos, int len){
 			pri_ptr = pri_ptr->addr_next;
 		}
 	}
+	num_of_nodes--;
 }
