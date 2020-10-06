@@ -220,6 +220,10 @@ void deleteNodeEnd(int len){
 // function to delete node from a certain position
 void deleteNodeMid(int pos, int len){
 	int node_index;
+	if(pos > num_of_nodes){
+		printf("Position Not Exists");
+		return;
+	}
 	struct node *pri_ptr, *sec_ptr;
 	if(num_of_nodes == 0){
 		printf("Linked List Underflow");
