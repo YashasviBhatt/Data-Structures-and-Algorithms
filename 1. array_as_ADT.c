@@ -127,8 +127,8 @@ int main()
             {
                 displayArray(&arr);
             }
+            default : printf("\nInvald Choice, Try Again\n");
         }
     }
-
     return 0;
 }
