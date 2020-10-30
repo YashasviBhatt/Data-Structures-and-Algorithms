@@ -123,10 +123,7 @@ int main()
                 delete(&arr, loc);
                 break;
             }
-            case 3 :
-            {
-                displayArray(&arr);
-            }
+            case 3 : displayArray(&arr); break;
             default : printf("\nInvald Choice, Try Again\n");
         }
     }
