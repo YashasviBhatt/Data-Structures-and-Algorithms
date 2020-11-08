@@ -67,6 +67,5 @@ int main()
     printf("\nArray\n");
     for(index = 0 ; index < num_of_elmnt ; index++)
         printf("Element %d : %d\n", index + 1, sorted_array[index]);
-    
     return 0;
 }
