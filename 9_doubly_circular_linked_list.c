@@ -136,10 +136,7 @@ int insertEnd(int n)
         return ++n;
     }
 
-    pri_ptr = start;
-
-    while(pri_ptr->addr_next != start)
-        pri_ptr = pri_ptr->addr_next;
+    pri_ptr = start->addr_prev;
     
     pri_ptr->addr_next = ptr;
     ptr->addr_prev = pri_ptr;
@@ -188,17 +185,10 @@ int deleteEnd(int n)
         return 0;
     }
 
-    struct Node *pri_ptr, *sec_ptr;
-    sec_ptr = start;
-    pri_ptr = sec_ptr->addr_next;
-
-    while(pri_ptr->addr_next != start)
-    {
-        sec_ptr = pri_ptr;
-        pri_ptr = pri_ptr->addr_next;
-    }
-    sec_ptr->addr_next = start;
-    start->addr_prev = sec_ptr;
+    struct Node *pri_ptr;
+    pri_ptr = start->addr_prev;
+    pri_ptr->addr_prev->addr_next = start;
+    start->addr_prev = pri_ptr->addr_prev;
     free(pri_ptr);
     printf("\nNode Removed Successfully\n");
     return --n;
