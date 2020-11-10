@@ -278,7 +278,8 @@ int main()
             case 4 : num_of_nodes = deleteStart(num_of_nodes); break;
             case 5 : num_of_nodes = deleteEnd(num_of_nodes); break;
             case 6 : num_of_nodes = deleteMid(num_of_nodes); break;
-            case 7 : display(num_of_nodes);
+            case 7 : display(num_of_nodes); break;
+            default : printf("\nInvalid Choice, Try Again\n");
         }
     }
 }
