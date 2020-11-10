@@ -280,13 +280,8 @@ int r2lDisplay(int n)
     }
 
     printf("\nEntered Data\n");
-    struct Node *ptr = start;
-    while(ptr->addr_next != start)
-    {
-        // printf("Node %d Data : %d\n", index, ptr->data);
-        ptr = ptr->addr_next;
-        // index++;
-    }
+    struct Node *ptr;
+    ptr = start->addr_prev;
 
     do
     {
