@@ -27,6 +27,7 @@ struct Node * push()
     return top;
 }
 
+// Function to Pop Element from Stack
 struct Node * pop()
 {
     if (top == NULL)
@@ -53,6 +54,7 @@ struct Node * pop()
     }
 }
 
+// Function to Peek into Stack
 struct Node * peek()
 {
     if (top == NULL)
