@@ -46,7 +46,7 @@ int output_restricted()
 
         switch(choice)
         {
-            case 0 : return 0; break;
+            case 0 : return 0;
             case 1 : enqueue_rear(); break;
             case 2 : enqueue_front(); break;
             case 3 : dequeue_front(); break;
