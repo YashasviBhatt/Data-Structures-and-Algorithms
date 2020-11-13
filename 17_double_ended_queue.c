@@ -21,7 +21,7 @@ int input_restricted()
 
         switch(choice)
         {
-            case 0 : return 0; break;
+            case 0 : return 0;
             case 1 : enqueue_rear(); break;
             case 2 : dequeue_front(); break;
             case 3 : dequeue_rear(); break;
