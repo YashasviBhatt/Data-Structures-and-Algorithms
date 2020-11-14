@@ -5,7 +5,7 @@ struct Item
 {
     int data;
     int priority;
-    int addr_next;
+    struct Item *addr_next;
 }*left, *right;
 
 // Function to Enqueue Item into the Queue
@@ -83,6 +83,7 @@ void dequeue()
         }
         sec_ptr->addr_next = NULL;
         free(pri_ptr);
+        right = sec_ptr;
     }
     printf("\nItem Dequeued Successfully\n\n");
 }
