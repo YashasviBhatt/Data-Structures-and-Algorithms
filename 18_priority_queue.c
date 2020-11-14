@@ -41,7 +41,7 @@ void enqueue()
         pri_ptr = sec_ptr->addr_next;
         while(pri_ptr != right->addr_next)
         {
-            if((ptr->priority > sec_ptr->priority) && (ptr->priority < pri_ptr->priority))
+            if((ptr->priority > sec_ptr->priority) && (ptr->priority <= pri_ptr->priority))
             {
                 sec_ptr->addr_next = ptr;
                 ptr->addr_next = pri_ptr;
