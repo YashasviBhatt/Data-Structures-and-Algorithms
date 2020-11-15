@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-// Function to Sort Array using Insertion Sort Algorithm
+// Function to Sort Array using Shell Sort Algorithm
 void shell_sort(int arr[], int n)
 {
     int index1, temp, gap = n / 2;
