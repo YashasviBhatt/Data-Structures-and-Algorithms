@@ -2,22 +2,15 @@
 
 void bubble_sort(int arr[], int n)
 {
-    int index1, index2, temp, flag = 0;
+    int index1, index2, temp;
     for(index1 = 0 ; index1 < n - 1 ; index1++)
-    {
         for(index2 = 0 ; index2 < n - index1 - 1 ; index2++)
             if(arr[index2] > arr[index2 + 1])
             {
                 temp = arr[index2];
                 arr[index2] = arr[index2 + 1];
                 arr[index2 + 1] = temp;
-                flag = 1;
             }
-        if(flag != 1)
-            break;
-        else
-            flag = 0;
-    }
 }
 
 int main()
