@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-int bubble_sort(int arr[], int n)
+void bubble_sort(int arr[], int n)
 {
     int index1, index2, temp, flag = 0;
     for(index1 = 0 ; index1 < n - 1 ; index1++)
@@ -31,7 +31,7 @@ int main()
     if(n > 10 || n < -1)
     {
         printf("Invalid Input");
-        exit(0);
+        return 0;
     }
 
     printf("Enter Elements\n");
@@ -48,4 +48,5 @@ int main()
     {
         printf("Element %d : %d\n", index + 1, arr[index]);
     }
+    return 0;
 }
