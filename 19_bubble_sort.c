@@ -1,5 +1,6 @@
 #include<stdio.h>
 
+// Function to Sort Array using Bubble Sort Algorithm
 void bubble_sort(int arr[], int n)
 {
     int index1, index2, temp;
