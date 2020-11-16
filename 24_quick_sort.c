@@ -16,16 +16,17 @@ void quick_sort(int arr[], int low, int high)
 // Function to Partition
 int partition(int arr[], int low, int high)
 {
+    int pi = arr[low];
     int left = low + 1;
     int right = high;
     int temp;
 
     do
     {
-        while(arr[left] <= arr[low])
+        while(arr[left] <= pi)
             left++;
             
-        while(arr[right] > arr[low])
+        while(arr[right] > pi)
             right--;
             
         if(left < right)
