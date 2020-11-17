@@ -25,7 +25,7 @@ int main()
     printf("Enter Number of Elements : ");
     scanf("%d", &n);
 
-    if(n > 10 || n < -1)
+    if(n > 10 || n < 0)
     {
         printf("Invalid Input");
         return 0;
