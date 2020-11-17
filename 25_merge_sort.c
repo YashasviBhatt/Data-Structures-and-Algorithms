@@ -1,5 +1,6 @@
 #include<stdio.h>
 
+// Function to Sort Array using Merge Sort Algorithm
 void merge_sort(int arr[], int low, int high)
 {
     int mid;
@@ -12,6 +13,7 @@ void merge_sort(int arr[], int low, int high)
     }
 }
 
+// Function to Merge Sub-Arrays into Final Sorted Array
 void merge(int arr[], int low, int mid, int high)
 {
     int sorted_array[10];
@@ -33,7 +35,6 @@ void merge(int arr[], int low, int mid, int high)
 
     for (index = low; index <= high; index++)
         arr[index] = sorted_array[index];
-    
 }
 
 int main()
