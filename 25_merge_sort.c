@@ -39,7 +39,7 @@ void merge(int arr[], int low, int mid, int high)
 
 int main()
 {
-    int arr[10], *final_array;
+    int arr[10];
     int n, index;
 
     printf("Enter Number of Elements : ");
