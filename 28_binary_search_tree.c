@@ -12,8 +12,6 @@ struct Node
 // Function to Insert Node in Binary Search Tree
 void insert_node(struct Node *root_node, struct Node *ptr)
 {
-    if(root_node == NULL)
-        root = ptr;
     if(root_node->data > ptr->data)
         if(root_node->left == NULL)
             root_node->left = ptr;
