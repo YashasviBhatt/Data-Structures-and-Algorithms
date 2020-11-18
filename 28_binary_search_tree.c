@@ -181,6 +181,11 @@ int main()
             }
             case 3 :
             {
+                if(root == NULL)
+                {
+                    printf("Root Not Exists");
+                    break;
+                }
                 printf("\nPre-Order Traversal\n\n");
                 preorder_traversal(root);
                 printf("\n");
@@ -188,6 +193,11 @@ int main()
             }
             case 4 :
             {
+                if(root == NULL)
+                {
+                    printf("Root Not Exists");
+                    break;
+                }
                 printf("\nIn-Order Traversal\n\n");
                 inorder_traversal(root);
                 printf("\n");
@@ -195,6 +205,11 @@ int main()
             }
             case 5 :
             {
+                if(root == NULL)
+                {
+                    printf("Root Not Exists");
+                    break;
+                }
                 printf("\nPost-Order Traversal\n\n");
                 postorder_traversal(root);
                 printf("\n");
@@ -202,6 +217,11 @@ int main()
             }
             case 6 :
             {
+                if(root == NULL)
+                {
+                    printf("Root Not Exists");
+                    break;
+                }
                 printf("\nEnter Node Value : ");
                 scanf("%d", &key);
                 status = search(root, key);
