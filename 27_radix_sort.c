@@ -13,10 +13,7 @@ void count_sort(int arr[], int n, int exp)
         count[index] += count[index - 1];
     
     for (index = n - 1 ; index >= 0 ; index--)
-    {
-        output[count[(arr[index] / exp) % 10] - 1] = arr[index];
-        count[(arr[index] / exp) % 10]--;
-    }
+        output[--count[(arr[index] / exp) % 10]] = arr[index];
 
     for (index = 0 ; index < n ; index++)
         arr[index] = output[index];
