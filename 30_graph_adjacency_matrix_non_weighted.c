@@ -125,7 +125,7 @@ void insert_node()
             printf("Node Already Exists\n\n");
     }
     else
-        printf("Max Node Limit Reached\n\n");
+        printf("Maximum Node Limit Reached\n\n");
 }
 
 // Function to Delete Node
