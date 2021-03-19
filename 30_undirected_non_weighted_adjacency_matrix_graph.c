@@ -23,7 +23,7 @@ void setup_graph(int num_of_nodes)
     int ver_idx, hor_idx;
 
     for(ver_idx = 0 ; ver_idx < MAX ; ver_idx++)
-        for(hor_idx = 0 ; hor_idx <= ver_idx ; hor_idx++)
+        for(hor_idx = 0 ; hor_idx < MAX ; hor_idx++)
         {    
             GRAPH[ver_idx][hor_idx] = IGNR;
         }
@@ -36,24 +36,22 @@ void setup_graph(int num_of_nodes)
     }
 
     for(ver_idx = 0 ; ver_idx < num_of_nodes ; ver_idx++)
-    {
-        for(hor_idx = 0 ; hor_idx < num_of_nodes ; hor_idx++)
+        for(hor_idx = ver_idx ; hor_idx < num_of_nodes ; hor_idx++)
             GRAPH[ver_idx][hor_idx] = 0;
-    }
 }
 
 // Function to Insert Edge
 void insert_edge()
 {
-    int des_idx, src_idx;
-    char des, src;
-    printf("\nEnter First Node : ");
-    scanf(" %c", &des);
-    printf("Enter Second Node : ");
+    int src_idx, des_idx;
+    char src, des;
+    printf("\nEnter Source Node : ");
     scanf(" %c", &src);
-    des_idx = node_search(des);
+    printf("Enter Destination Node : ");
+    scanf(" %c", &des);
     src_idx = node_search(src);
-    if(des_idx == -1 || src_idx == -1)
+    des_idx = node_search(des);
+    if(src_idx == -1 || des_idx == -1)
         printf("Either Source Node doesn't Exists or Destination Node doesn't Exists\n\n");
     else
     {
@@ -70,15 +68,15 @@ void insert_edge()
 // Function to Delete Edge
 void delete_edge()
 {
-    int des_idx, src_idx;
-    char des, src;
-    printf("\nEnter First Node : ");
-    scanf(" %c", &des);
-    printf("Enter Second Node : ");
+    int src_idx, des_idx;
+    char src, des;
+    printf("\nEnter Source Node : ");
     scanf(" %c", &src);
-    des_idx = node_search(des);
+    printf("Enter Destination Node : ");
+    scanf(" %c", &des);
     src_idx = node_search(src);
-    if(des_idx == -1 || src_idx == -1)
+    des_idx = node_search(des);
+    if(src_idx == -1 || des_idx == -1)
         printf("Either Source Node doesn't Exists or Destination Node doesn't Exists\n\n");
     else
     {
@@ -87,7 +85,7 @@ void delete_edge()
         else
         {
             GRAPH[src_idx][des_idx] = 0;
-            printf("Edge Deleted Successfully\n\n");
+            printf("Edge Inserted Successfully\n\n");
         }
     }
 }
@@ -95,25 +93,25 @@ void delete_edge()
 // Function to Insert Node
 void insert_node()
 {
-    char node_val, des;
+    char node_val, src;
     int src_idx, des_idx;
     int index;
     if(num_of_nodes != MAX)
     {
         printf("Enter Node Value : ");
         scanf(" %c", &node_val);
-        src_idx = node_search(node_val);
-        if(src_idx == -1)
+        des_idx = node_search(node_val);
+        if(des_idx == -1)
         {
-            src_idx = num_of_nodes;
+            des_idx = num_of_nodes;
             node_list[num_of_nodes++] = node_val;
             for(index = 0 ; index < num_of_nodes ; index++)
-                GRAPH[src_idx][index] = 0;
+                GRAPH[index][des_idx] = 0;
             printf("Add Edge\n");
-            printf("Enter Second Node : ");
-            scanf(" %c", &des);
-            des_idx = node_search(des);
-            if(des_idx != -1)
+            printf("Enter Source Node : ");
+            scanf(" %c", &src);
+            src_idx = node_search(src);
+            if(src_idx != -1)
             {
                 GRAPH[src_idx][des_idx] = 1;
                 printf("Node Added Successfully\n\n");
@@ -177,10 +175,10 @@ void display()
     printf("\n\n");
     printf("Edges\n");
     for(ver_idx = 0 ; ver_idx < num_of_nodes ; ver_idx++)
-        for(hor_idx = 0 ; hor_idx <= ver_idx ; hor_idx++)
+        for(hor_idx = ver_idx ; hor_idx < num_of_nodes ; hor_idx++)
             if(GRAPH[ver_idx][hor_idx] == 1)
             {
-                printf("(%c - %c)\n", node_list[hor_idx], node_list[ver_idx]);
+                printf("(%c - %c)\n", node_list[ver_idx], node_list[hor_idx]);
                 no_edge_flag = 1;
             }
     if(no_edge_flag == 0)
@@ -199,9 +197,14 @@ void display_matrix()
     printf("\n\n");
     for(ver_idx = 0 ; ver_idx < num_of_nodes ; ver_idx++)
     {
-        printf("%c   ", node_list[ver_idx]);    
-        for(hor_idx = 0 ; hor_idx <= ver_idx ; hor_idx++)
-            printf("%d ", GRAPH[ver_idx][hor_idx]);
+        printf("%c   ", node_list[ver_idx]);
+        for(hor_idx = 0 ; hor_idx < num_of_nodes ; hor_idx++)
+        {
+            if(hor_idx < ver_idx)
+                printf("  ");
+            else
+                printf("%d ", GRAPH[ver_idx][hor_idx]);
+        }
         printf("\n");
     }
     printf("\n");
